@@ -11,7 +11,7 @@ body { margin: 0; padding: 0; background: #f0f0f0; font-family: 'Arial', 'Helvet
     width: 210mm; 
     height: 297mm; /* Fixed height A4 */
     /* ULTRA COMPACT PADDING to maximize usable space */
-    /* Top: 3mm, Bottom: 12mm (reserved for footer), Sides: 10mm */
+    /* Top: 3mm, Bottom: 6mm (reserved for footer), Sides: 10mm */
     padding: 3mm 10mm 12mm 10mm; 
     margin: 40px auto; 
     background: white; 
@@ -20,7 +20,7 @@ body { margin: 0; padding: 0; background: #f0f0f0; font-family: 'Arial', 'Helvet
     box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
     box-sizing: border-box;
     /* Typography Base - Smaller default for safety */
-    font-size: 9pt; 
+    font-size: 9.5pt; 
     line-height: 1.25; 
     color: #333;
     page-break-after: always;
@@ -49,7 +49,7 @@ body { margin: 0; padding: 0; background: #f0f0f0; font-family: 'Arial', 'Helvet
     margin-bottom: 6px; 
     line-height: 1.1;
     /* Defaults */
-    font-size: 16pt; 
+    font-size: 14pt; 
     color: #000;
 }
 
