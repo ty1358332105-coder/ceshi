@@ -233,86 +233,19 @@ Your goal is to produce **Raw HTML Code** that visually mirrors the original PDF
 # VISUAL RESTORATION
 - **Colors:** Match header colors (Red/Blue/Black) using inline styles.
 - **Font Sizes:** Match relative font hierarchies.
-# HTML/CSS SPECIFICATIONS
 
-Output a standalone HTML file. Note the CSS changes to support scrolling and printing multiple pages:
-
-\`\`\`css
-@page { size: A4; margin: 0; }
-body { 
-    margin: 0; 
-    padding: 20px; 
-    background: #525659; 
-    font-family: 'Helvetica Neue', Arial, sans-serif; 
-    -webkit-print-color-adjust: exact; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px; 
-}
-
-.page-container {
-    width: 210mm; 
-    height: 297mm; /* Strict A4 height */
-    padding: 10mm 15mm 15mm 15mm; 
-    background: white; 
-    overflow: hidden; 
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
-    box-sizing: border-box;
-    font-size: 10.5pt; 
-    line-height: 1.35; 
-    color: #333;
-    page-break-after: always; 
-}
-
-.page-container:last-child {
-    page-break-after: auto;
-}
-
-@media print {
-    body { background: white; padding: 0; gap: 0; display: block; }
-    .page-container { margin: 0; box-shadow: none; border: none; width: 210mm; height: 297mm; overflow: hidden; }
-}
-
-/* COMPACT TYPOGRAPHY */
-h1 { font-size: 18pt; color: #000; margin-top: 0; margin-bottom: 6px; font-weight: bold; background: #eee; padding: 5px 8px; }
-h2 { font-size: 15pt; border-bottom: 2px solid #000; padding-bottom: 2px; margin-top: 10px; margin-bottom: 6px; }
-h3 { font-size: 11.5pt; font-weight: bold; margin-top: 8px; margin-bottom: 4px; }
-
-p, li { margin-bottom: 3px; }
-ul, ol { margin-top: 0; margin-bottom: 4px; padding-left: 1.2em; }
-
-/* LAYOUT GRID */
-.layout-grid { display: grid; grid-template-columns: 1fr 65mm; gap: 5mm; align-items: start; }
-
-/* IMAGES */
-.figure-container { width: 100%; margin-bottom: 5px; page-break-inside: avoid; }
-.figure-box {
-    width: 100%; border: 2px dashed #cbd5e1; border-radius: 6px; background-color: #f8fafc;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 4px; box-sizing: border-box; margin-bottom: 4px;
-    cursor: pointer; transition: all 0.2s ease; overflow: hidden;
-}
-.figure-box:hover { border-color: #3b82f6; background-color: #eff6ff; }
-.figure-content { pointer-events: none; }
-.figure-label { display: block; font-size: 9pt; font-weight: 600; color: #475569; }
-.figure-hint { display: block; font-size: 7.5pt; color: #94a3b8; margin-top: 2px; }
-
-/* TABLES */
-table.spec-table { width: 100%; border-collapse: collapse; margin: 5px 0; font-size: 8.5pt; }
-table.spec-table th, table.spec-table td { border: 1px solid #333; padding: 3px 5px; text-align: center; }
-table.spec-table th { background-color: #e2e8f0; font-weight: bold; }
-
-/* FOOTER */
-.page-footer {
-    position: absolute; bottom: 0; left: 0; width: 100%; height: 12mm;
-    padding: 0 15mm; display: flex; align-items: center; justify-content: flex-end;
-    background: white; z-index: 50; pointer-events: none;
-}
-.footer-content { border-top: 2px solid #000; width: 100%; padding-top: 2px; display: flex; justify-content: flex-end; }
-.footer-number { background: #000; color: #fff; padding: 1px 6px; font-weight: bold; font-size: 9pt; }
-\`\`\`
+# CSS CLASS MAPPING
+- Titles: \`<h1 class="main-title" style="...">...</h1>\`
+- Sections: \`<div class="section-header" style="...">...</div>\`
+- Figures: 
+  \`\`\`html
+  <div class="figure-box" style="height: [ESTIMATED_HEIGHT]mm">
+     <div class="figure-label">[Optional: Figure Label if outside diagram]</div>
+     <div class="figure-hint">Click to upload original diagram</div>
+  </div>
+  \`\`\`
+- Warnings: \`<div class="warning-box" style="...">...</div>\`
+- Footer: \`<div class="page-footer">...</div>\`
 
 # OUTPUT FORMAT
 Return **ONLY** the HTML content wrapped in \`<div class="page-container">\`.
